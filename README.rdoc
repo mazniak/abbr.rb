@@ -1,4 +1,4 @@
-= abbr
+= abbr.rb
 
 Syntax sugar to construct ruby classes with lazy, memoized instnace members
 

@@ -19,6 +19,7 @@ module Abbr
   module InstanceMethods
     private
     def initialize(*args)
+      super
       @_abbr_memos = {}
       @_abbr_args = Hash[args.each_with_index.to_a.map(&:reverse)]
     end
