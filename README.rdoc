@@ -1,6 +1,49 @@
 = abbr
 
-Description goes here.
+Syntax sugar to construct ruby classes with lazy, memoized instnace members
+
+  class CostlyThing < Abbr::Object
+    abbr_init :x, :y
+
+    # z is costly, memoization desirable
+    let(:z) { x + y }
+  end
+
+  module CostlyPattern
+    extend Abbr::Mixin
+
+    let(:z) { costly }
+  end
+
+  class AdditiveCostlyPattern
+    include CostlyPattern
+
+    abbr_init :x, :y
+
+    def costly
+      x + y
+    end
+  end
+
+  class MultiplicativeCostlyPattern
+    include CostlyPattern
+
+    def initialize(x, y)
+      @x, @y = x, y
+    end
+
+    def costly
+      x * y
+    end
+  end
+
+  costly = AdditiveCostlyPattern.new(3, 4)
+  costly.z # costly.z only evaluated once
+  costly.z # then its return value is memoized
+  costly.z # for subsequent invokations
+
+== TODO
+* better examples
 
 == Contributing to abbr
  

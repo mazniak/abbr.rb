@@ -16,8 +16,14 @@ Juwelier::Tasks.new do |gem|
   gem.name = "abbr"
   gem.homepage = "http://github.com/mazniak/abbr"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Syntax sugar to construct ruby classes with lazy, memoized instance members}
+  gem.description = <<-RUBY
+class Action < Abbr::Object
+  abbr_init :input
+
+  let(:output) { process(input) }
+end
+RUBY
   gem.email = "matt@talkingpointsmemo.com"
   gem.authors = ["Matthew Wozniak"]
 
@@ -27,6 +33,7 @@ Juwelier::RubygemsDotOrgTasks.new
 require 'rspec/core'
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec) do |spec|
+  spec.rspec_opts = "--require ./spec/spec_helper.rb"
   spec.pattern = FileList['spec/**/*_spec.rb']
 end
 

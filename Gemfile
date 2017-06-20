@@ -6,6 +6,9 @@ source "https://rubygems.org"
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :development do
+  gem 'pry'
+  gem 'pry-stack_explorer'
+  gem 'pry-doc'
   gem "rspec", "~> 3.5.0"
   gem "rdoc", "~> 3.12"
   gem "bundler", "~> 1.0"
