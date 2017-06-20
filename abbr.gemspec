@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "abbr.gemspec",
     "lib/abbr.rb",
     "spec/abbr_spec.rb",
     "spec/spec_helper.rb"
