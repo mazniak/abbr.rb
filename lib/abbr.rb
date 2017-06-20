@@ -21,7 +21,6 @@ module Abbr
     def initialize(*args)
       super
       @_abbr_memos = {}
-      @_abbr_args = Hash[args.each_with_index.to_a.map(&:reverse)]
     end
   end # InstanceMethods
 
@@ -71,7 +70,8 @@ module Abbr
     def abbr_init(*args_aliases, &block)
       abbr_arguments(*args_aliases)
       define_abbr_method(:initialize, :private) do |*args|
-        super(*args)
+        super()
+        @_abbr_args = Hash[args.each_with_index.to_a.map(&:reverse)]
         instance_eval(&block) if block
       end
     end
